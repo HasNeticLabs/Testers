@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Early Access - HasNeticLabs</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    <div class="extra" id="extra">
+        <img src="https://via.placeholder.com/150x50?text=HasNeticLabs" alt="HasNeticLabs Logo" class="logo">
+    <h1>Join HasNeticLabs Early Access</h1>
+    <p>Be among the first to experience our latest innovation! Follow the steps below to register.</p>
+
+    <div class="steps">
+      <div class="step">
+        <span>1</span>
+        <p id="step"><strong>Register Your Email</strong> by filling out the form below.</p>
+      </div>
+      <div class="step">
+        <span>2</span>
+        <p id="step"><strong>Get Access & Download Link</strong> via email once approved.</p>
+      </div>
+      <div class="step">
+        <span>3</span>
+        <p id="step"><strong>Install & Use</strong> the app for at least 14 days.</p>
+      </div>
+    </div>
+
+    <form id="signup-form">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="email" id="email" placeholder="Your Email" required>
+      <button type="submit">Request Access</button>
+    </form>
+
+    <p class="info-text">
+      📌 <strong>Important:</strong> Once you install the app, make sure to <strong>use it a few times</strong> and <strong>keep it for at least 14 days</strong>.  
+      Do not uninstall or leave the testing plan early, as it helps us improve the app!
+    </p>
+
+    </div>
+
+    <div class="thank-you hidden">
+        <h2>🎉 Thank You, Tester! 🎉</h2>
+        <p>We truly appreciate your time and support in testing our apps. Your feedback helps us create better experiences for everyone.</p>
+        <p>Check your email for updates, and enjoy early access!</p>
+        <p><strong id="hint">💡 Love it? Share it! 💡</strong><br>  
+        Invite your friends and others to join our early access program. The more feedback we get, the better we can make it!
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("signup-form").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+
+        fetch("https://script.google.com/macros/s/AKfycbz-cBZ47cINjOb9abnBUb2OUffazd1ESDsUZRwlFs34P-WGFudgQ0g391Wa-FjyWKyB0Q/exec", {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name: name, email: email })
+        })
+        .then(response => response.text()) // Convert response to text
+        .then(data => {
+          document.querySelector(".thank-you").classList.remove("hidden");
+          document.querySelector(".thank-you").style.display = "block";
+          document.getElementById("extra").style.display = "none";
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            alert("An error occurred. Please try again later.");
+        });
+    });
+</script>
+
+
+</body>
+</html>
